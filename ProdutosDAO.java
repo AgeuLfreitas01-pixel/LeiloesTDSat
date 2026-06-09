@@ -1,3 +1,4 @@
+
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,7 +11,9 @@ public class ProdutosDAO {
     Connection conn;
     PreparedStatement prep;
     ResultSet resultset;
+    ArrayList<ProdutosDTO> listagem = new ArrayList<>();
     
+  
     public void cadastrarProduto(ProdutosDTO produto) {
         String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
         try {
@@ -35,6 +38,7 @@ public class ProdutosDAO {
         }
     } 
 
+   
     public void venderProduto(int id) {
         String sql = "UPDATE produtos SET status = 'Vendido' WHERE id = ?";
         try {
@@ -56,6 +60,7 @@ public class ProdutosDAO {
         }
     }
     
+   
     public ArrayList<ProdutosDTO> listarProdutos() {
         String sql = "SELECT * FROM produtos";
         ArrayList<ProdutosDTO> listaGeral = new ArrayList<>();
@@ -87,6 +92,7 @@ public class ProdutosDAO {
         return listaGeral; 
     }
     
+ 
     public ArrayList<ProdutosDTO> listarProdutosVendidos() {
         String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
         ArrayList<ProdutosDTO> listaVendidos = new ArrayList<>();
